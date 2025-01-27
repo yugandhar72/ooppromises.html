@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>promise</title>
+  </head>
+  <body>
+    <h1>
+      TASK:- Today's Technical Task is to create 3 promises with different
+      examples!!
+    </h1>
+
+    
+    <script>
+      const promise1 = new Promise((resolve, reject) => {
+        setTimeout(() => {
+          resolve("Promise 1 resolved after 2 seconds");
+        }, 2000);
+      });
+
+      promise1.then((message) => {
+        console.log(message); // Output: Promise 1 resolved after 2 seconds
+      });
+
+      const promise2 = new Promise((resolve, reject) => {
+        const success = false;
+
+        if (success) {
+          resolve("Operation succeeded");
+        } else {
+          reject("Operation failed");
+        }
+      });
+
+      promise2
+        .then((message) => {
+          console.log(message); // Will not be reached since the promise is rejected
+        })
+        .catch((error) => {
+          console.log(error); // Output: Operation failed
+        });
+
+      const promise3_1 = new Promise((resolve) => {
+        setTimeout(() => resolve("First operation complete"), 1000);
+      });
+
+      const promise3_2 = new Promise((resolve) => {
+        setTimeout(() => resolve("Second operation complete"), 2000);
+      });
+
+      const promise3_3 = new Promise((resolve) => {
+        setTimeout(() => resolve("Third operation complete"), 3000);
+      });
+
+      Promise.all([promise3_1, promise3_2, promise3_3])
+        .then((results) => {
+          console.log(results); // Output: ['First operation complete', 'Second operation complete', 'Third operation complete']
+        })
+        .catch((error) => {
+          console.log("One of the promises failed:", error);
+        });
+    </script>
+  </body>
+</html>
